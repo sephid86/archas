@@ -47,23 +47,20 @@ echo LANG=ko_KR.UTF-8 > /etc/locale.conf
 echo arch > /etc/hostname
 
 #컴파일에 멀티 코어 쓰레드 사용 설정입니다.
-sudo echo "MAKEFLAGS='-j$(nproc)'" >> /etc/makepkg.conf
-
-#사용자 계정 sudo 명령어 설정.
-sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+echo "MAKEFLAGS='-j$(nproc)'" >> /etc/makepkg.conf
 
 #root 패스워드 설정
-echo "
+echo -e "
 \033[01;32m -Please enter the root password. \033[00m"
 passwd
 
 #계정 추가
-echo "
+echo -e "
 \033[01;32m -Please enter your user account ID \033[00m"
 read userid
 useradd -m -g users -G wheel -s /bin/bash ${userid}
 
-echo "
+echo -e "
 \033[01;32m -Please enter your user password \033[00m"
 passwd ${userid}
 
@@ -90,11 +87,20 @@ pacman -S vim os-prober ntfs-3g efibootmgr networkmanager intel-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
+cp .vimrc ~/
 mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/colors
-#cd ~/.vim/colors
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o ~/.vim/colors/
+vim +PluginInstall +qall
+
+#vim user
+cp .vimrc /home/${userid}/
+mkdir -p /home/${userid}/.vim/bundle
+mkdir -p /home/${userid}/.vim/colors
+git clone https://github.com/VundleVim/Vundle.vim.git /home/${userid}/.vim/bundle/Vundle.vim
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o /home/${userid}/.vim/colors/
+su - ${userid} -c "vim +PluginInstall +qall"
 
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
 pacman -S grub
@@ -106,39 +112,32 @@ grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S gnome gnome-shell-extensions gnome-tweaks noto-fonts-cjk ibus-hangul 
 systemctl enable gdm
 
-#사용자계정으로 전환
-su - sephid86
-
-#사용자계정에서 시간설정을 다시 한번 잡아줍니다.
-sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-timedatectl set-local-rtc 1 --adjust-system-clock
-sudo hwclock --systohc
-
-#vim 설정을 해줍니다.
-mkdir -p ~/.vim/bundle
-mkdir -p ~/.vim/colors
-#cd ~/.vim/colors
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o ~/.vim/colors/
-vim +PluginInstall +qall
-
-#root 계정용 vim 설정도 해줍니다.
-sudo vim +PluginInstall +qall
-
-#한글입력기를 자동으로 설정해줍니다.
-gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'hangul')]"
-gsettings set org.gnome.desktop.input-sources xkb-options "['korean:ralt_hangul', 'korean:rctrl_hanja']"
+#사용자 계정 sudo 명령어 설정.
+pacman -S sudo
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
-sudo pacman -Syu
-sudo pacman -S smplayer smplayer-skins smplayer-themes rhythmbox sudo xfce4-terminal ffmpegthumbnailer
+pacman -Syu
+pacman -S smplayer smplayer-skins smplayer-themes rhythmbox sudo xfce4-terminal ffmpegthumbnailer
 
 #xfce4 터미널을 설정합니다.
-sudo pacman -R gnome-terminal
-cp -v terminalrc ~/.config/xfce4/terminal/
+mkdir /home/${userid}/.config/smplayer
+cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
+cp -v .terminalrc /home/${userid}/.config/xfce4/terminal/
+pacman -R gnome-terminal
 
 #AMD ATI 드라이버 설치합니다.
-sudo pacman -S xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
+pacman -S xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
+
+#시간설정을 다시 한번 잡아줍니다.
+ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+timedatectl set-local-rtc 1 --adjust-system-clock
+hwclock --systohc
+
+#한글입력기를 자동으로 설정해줍니다.
+su - ${userid} -c "gsettings set org.gnome.desktop.input-sources sources \"[('ibus', 'hangul')]\""
+su - ${userid} -c "gsettings set org.gnome.desktop.input-sources xkb-options \"['korean:ralt_hangul', 'korean:rctrl_hanja']\""
+
 
 echo "
 \033[01;32m 
@@ -150,4 +149,4 @@ umount -R /mnt
 reboot
 \033[00m
 "
-exit
+
