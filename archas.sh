@@ -121,16 +121,19 @@ pacman -Syu
 pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmpegthumbnailer
 
 #xfce4 터미널을 설정합니다.
-su - ${userid} -c "mkdir ~/.config/smplayer"
+mkdir /home/${userid}/.config/smplayer
 cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
-cp -v .terminalrc /home/${userid}/.config/xfce4/terminal/
+cp -v terminalrc /home/${userid}/.config/xfce4/terminal/
 pacman -R gnome-terminal
 
 #AMD ATI 드라이버 설치합니다.
 pacman -Sy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
 #chrome
-su - ${userid} -c "git clone https://aur.archlinux.org/yay.git;cd yay;makepkg -si;yay -S google-chrome chrome-gnome-shell ttf-d2coding"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+yay -S google-chrome chrome-gnome-shell ttf-d2coding
 
 #시간설정을 다시 한번 잡아줍니다.
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
@@ -142,7 +145,7 @@ su - ${userid} -c "gsettings set org.gnome.desktop.input-sources sources \"[('ib
 su - ${userid} -c "gsettings set org.gnome.desktop.input-sources xkb-options \"['korean:ralt_hangul', 'korean:rctrl_hanja']\""
 
 
-echo "
+echo -e "
 \033[01;32m 
 -- Installation is complete.
 Please reboot by entering the commands below.
