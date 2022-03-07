@@ -49,6 +49,12 @@ echo arch > /etc/hostname
 #컴파일에 멀티 코어 쓰레드 사용 설정입니다.
 echo "MAKEFLAGS='-j$(nproc)'" >> /etc/makepkg.conf
 
+#배쉬 컬러 설정입니다.
+cp DIR_COLORS /etc
+cp bash.bashrc /etc
+cp .bashrc /etc/skel
+cp .bashrc ~/
+
 #root 패스워드 설정
 echo -e "
 \033[01;32m -Please enter the root password. \033[00m"
@@ -63,13 +69,6 @@ useradd -m -g users -G wheel -s /bin/bash ${userid}
 echo -e "
 \033[01;32m -Please enter your user password \033[00m"
 passwd ${userid}
-
-#배쉬 컬러 설정입니다.
-cp DIR_COLORS /etc
-cp bash.bashrc /etc
-cp .bashrc /etc/skel
-cp .bashrc ~/
-cp .bashrc /home/${userid}/
 
 #대한민국 미러 사이트를 등록합니다. - 원활한 다운속도를 위해.
 echo "Server = https://mirror.premi.st/archlinux/\$repo/os/\$arch
@@ -96,7 +95,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 #유저용 vim 설정 해줍니다.
-cp .vimrc /home/${userid}/
+su - ${userid} -c "cp /archas/.vimrc ~/"
 su - ${userid} -c "mkdir -p ~/.vim/bundle"
 su - ${userid} -c "mkdir -p ~/.vim/colors"
 su - ${userid} -c "cd ~/.vim/colors;curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim"
@@ -126,8 +125,9 @@ pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmp
 #xfce4 터미널을 설정합니다.
 su - ${userid} -c "mkdir -p ~/.config/smplayer"
 su - ${userid} -c "mkdir -p ~/.config/xfce4/terminal"
-cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
-cp -v terminalrc /home/${userid}/.config/xfce4/terminal/
+su - ${userid} -c "cp -v /archas/smplayer.ini ~/.config/smplayer"
+su - ${userid} -c "cp -v /archas/styles.ass ~/.config/smplayer"
+su - ${userid} -c "cp -v /archas/terminalrc ~/.config/xfce4/terminal/"
 pacman -R gnome-terminal
 
 #AMD ATI 드라이버 설치합니다.
@@ -140,11 +140,7 @@ hwclock --systohc
 
 #d2coding 폰트를 설치합니다.
 git clone https://github.com/naver/d2codingfont.git
-unzip D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
-
-su - ${userid} -c "mkdir -p ~/test"
-su - ${userid} -c "cp -rf /archas/AfterReboot ~/test"
-su - ${userid} -c "cd ~/test/AfterReboot;./test.sh"
+unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
 echo -e "
 \033[01;32m 
