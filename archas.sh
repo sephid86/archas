@@ -90,13 +90,16 @@ systemctl enable NetworkManager
 cp .vimrc ~/
 mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+cp jellybeans.vim ~/.vim/colors
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-#vim user
+#유저용 vim 설정 해줍니다.
 cp .vimrc /home/${userid}/
 su - ${userid} -c "mkdir -p ~/.vim/bundle"
 su - ${userid} -c "mkdir -p ~/.vim/colors"
+su - ${userid} -c "cd ~/.vim/colors;curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim"
 su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 su - ${userid} -c "vim +PluginInstall +qall"
 
@@ -121,7 +124,8 @@ pacman -Syu
 pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmpegthumbnailer
 
 #xfce4 터미널을 설정합니다.
-mkdir /home/${userid}/.config/smplayer
+su - ${userid} -c "mkdir -p ~/.config/smplayer"
+su - ${userid} -c "mkdir -p ~/.config/xfce4/terminal"
 cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
 cp -v terminalrc /home/${userid}/.config/xfce4/terminal/
 pacman -R gnome-terminal
@@ -129,21 +133,18 @@ pacman -R gnome-terminal
 #AMD ATI 드라이버 설치합니다.
 pacman -Sy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
-#chrome
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-yay -S google-chrome chrome-gnome-shell ttf-d2coding
-
 #시간설정을 다시 한번 잡아줍니다.
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 timedatectl set-local-rtc 1 --adjust-system-clock
 hwclock --systohc
 
-#한글입력기를 자동으로 설정해줍니다.
-su - ${userid} -c "gsettings set org.gnome.desktop.input-sources sources \"[('ibus', 'hangul')]\""
-su - ${userid} -c "gsettings set org.gnome.desktop.input-sources xkb-options \"['korean:ralt_hangul', 'korean:rctrl_hanja']\""
+#d2coding 폰트를 설치합니다.
+git clone https://github.com/naver/d2codingfont.git
+unzip D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
+su - ${userid} -c "mkdir -p ~/test"
+su - ${userid} -c "cp -rf /archas/AfterReboot ~/test"
+su - ${userid} -c "cd ~/test/AfterReboot;./test.sh"
 
 echo -e "
 \033[01;32m 

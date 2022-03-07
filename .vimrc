@@ -55,7 +55,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 
 "Powerline 활성화- D2Coding 폰트 필요
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 "----- vim-airline -----
 
 "----- NERDTree -----
