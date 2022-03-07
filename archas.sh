@@ -129,6 +129,9 @@ pacman -R gnome-terminal
 #AMD ATI 드라이버 설치합니다.
 pacman -S xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
+#chrome
+su - ${userid} -c "git clone https://aur.archlinux.org/yay.git;cd yay;makepkg -si;yay -S google-chrome chrome-gnome-shell ttf-d2coding"
+
 #시간설정을 다시 한번 잡아줍니다.
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 timedatectl set-local-rtc 1 --adjust-system-clock
