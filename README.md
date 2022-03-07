@@ -59,6 +59,6 @@ genfstab -U /mnt >> /mnt/etc/fstab<br>
 arch-chroot /mnt<br>
 <br>
 5. archas 스크립트 다운로드 및 스크립트 실행<br>
-\# git clone https://github.com/sephid86/archas.git<br>
-\# cd archas<br>
-\# ./archas.sh<br>
+# git clone https://github.com/sephid86/archas.git<br>
+# cd archas<br>
+# ./archas.sh<br>
