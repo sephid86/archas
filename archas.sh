@@ -114,6 +114,8 @@ systemctl enable gdm
 pacman -Sy sudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
+su - ${userid} -c "git config --global core.editor vim"
+
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
 pacman -Syu
 pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmpegthumbnailer
