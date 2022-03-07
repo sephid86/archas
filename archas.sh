@@ -83,7 +83,7 @@ echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
-pacman -S vim os-prober ntfs-3g efibootmgr networkmanager intel-ucode
+pacman -Sy vim os-prober ntfs-3g efibootmgr networkmanager intel-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
@@ -95,39 +95,39 @@ curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/
 vim +PluginInstall +qall
 
 #vim user
-cp .vimrc /home/${userid}/
-mkdir -p /home/${userid}/.vim/bundle
-mkdir -p /home/${userid}/.vim/colors
-git clone https://github.com/VundleVim/Vundle.vim.git /home/${userid}/.vim/bundle/Vundle.vim
-curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o /home/${userid}/.vim/colors/
+su - ${userid} -c "cp .vimrc ~/"
+su - ${userid} -c "mkdir -p ~/.vim/bundle"
+su - ${userid} -c "mkdir -p ~/.vim/colors"
+su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+su - ${userid} -c "curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o ~/.vim/colors/"
 su - ${userid} -c "vim +PluginInstall +qall"
 
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
-pacman -S grub
+pacman -Sy grub
 sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/bin/grub-mkconfig
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치 - 한글 입력기와 noto 폰트 설치됩니다.
-pacman -S gnome gnome-shell-extensions gnome-tweaks noto-fonts-cjk ibus-hangul 
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks noto-fonts-cjk ibus-hangul 
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
-pacman -S sudo
+pacman -Sy sudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
 pacman -Syu
-pacman -S smplayer smplayer-skins smplayer-themes rhythmbox sudo xfce4-terminal ffmpegthumbnailer
+pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmpegthumbnailer
 
 #xfce4 터미널을 설정합니다.
-mkdir /home/${userid}/.config/smplayer
-cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
-cp -v .terminalrc /home/${userid}/.config/xfce4/terminal/
+su - ${userid} -c "mkdir ~/.config/smplayer
+su - ${userid} -c "cp -v smplayer.ini styles.ass ~/.config/smplayer
+su - ${userid} -c "cp -v .terminalrc ~/.config/xfce4/terminal/
 pacman -R gnome-terminal
 
 #AMD ATI 드라이버 설치합니다.
-pacman -S xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
+pacman -Sy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
 #chrome
 su - ${userid} -c "git clone https://aur.archlinux.org/yay.git;cd yay;makepkg -si;yay -S google-chrome chrome-gnome-shell ttf-d2coding"
