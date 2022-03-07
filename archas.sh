@@ -83,7 +83,7 @@ echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
-pacman -Sy vim os-prober ntfs-3g efibootmgr networkmanager intel-ucode
+pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager intel-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
@@ -91,15 +91,13 @@ cp .vimrc ~/
 mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/colors
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o ~/.vim/colors/
 vim +PluginInstall +qall
 
 #vim user
-su - ${userid} -c "cp .vimrc ~/"
+cp .vimrc /home/${userid}/
 su - ${userid} -c "mkdir -p ~/.vim/bundle"
 su - ${userid} -c "mkdir -p ~/.vim/colors"
 su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-su - ${userid} -c "curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim -o ~/.vim/colors/"
 su - ${userid} -c "vim +PluginInstall +qall"
 
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
@@ -121,9 +119,9 @@ pacman -Syu
 pacman -Sy smplayer smplayer-skins smplayer-themes rhythmbox xfce4-terminal ffmpegthumbnailer
 
 #xfce4 터미널을 설정합니다.
-su - ${userid} -c "mkdir ~/.config/smplayer
-su - ${userid} -c "cp -v smplayer.ini styles.ass ~/.config/smplayer
-su - ${userid} -c "cp -v .terminalrc ~/.config/xfce4/terminal/
+su - ${userid} -c "mkdir ~/.config/smplayer"
+cp -v smplayer.ini styles.ass /home/${userid}/.config/smplayer
+cp -v .terminalrc /home/${userid}/.config/xfce4/terminal/
 pacman -R gnome-terminal
 
 #AMD ATI 드라이버 설치합니다.
