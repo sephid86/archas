@@ -28,10 +28,18 @@ https://github.com/sephid86 - update 220308 - This is for korean.
 read
 #-1.리눅스 베이스 설치
 #pacstrap /mnt base linux linux-firmware
-
 #genfstab -U /mnt >> /mnt/etc/fstab
-
 #arch-chroot /mnt
+
+#CPU 제조사 부터 확인합니다.
+#FindCPU=$(lscpu | grep -o 'AMD' | head -1)
+#echo ${FindCPU}
+if [ "$(lscpu | grep -o 'AMD' | head -1)" == "AMD" ];
+then
+  CPUVendorID="amd"
+else
+  CPUVendorID="intel"
+fi
 
 #시간설정
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
@@ -86,7 +94,7 @@ echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
-pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager intel-ucode
+pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
