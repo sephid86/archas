@@ -25,7 +25,6 @@ vim
 https://github.com/sephid86 - update 220308 - This is for korean.
 \033[0m
 ---Press any key to start the installation."
-read
 #-1.리눅스 베이스 설치
 #pacstrap /mnt base linux linux-firmware
 #genfstab -U /mnt >> /mnt/etc/fstab
@@ -41,6 +40,7 @@ else
   CPUVendorID="intel"
 fi
 
+read
 #시간설정
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 timedatectl set-local-rtc 1 --adjust-system-clock
