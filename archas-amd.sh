@@ -56,6 +56,9 @@ cp bash.bashrc /etc
 cp .bashrc /etc/skel
 cp .bashrc ~/
 
+#pacman 컬러 설정입니다.
+sed -i 's/#Color/Color/g' /etc/pacman.conf
+
 #root 패스워드 설정
 echo -e "
 \033[01;32m -Please enter the root password. \033[00m"
