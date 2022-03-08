@@ -64,6 +64,8 @@ arch-chroot /mnt<br>
 # git clone https://github.com/sephid86/archas.git<br>
 # cd archas<br>
 # ./archas.sh<br>
+(AMD 나 라데온 그래픽 카드를 이용 하시는분은 ./archas-amd.sh)
+(Nvidia 는 아직.. 그래픽드라이버 직접 설치 하셔야 합니다...)
 <br>
 <br>
 추가로 한글 입력기 설정과 크롬 설치, yay 설치를 원하시는 경우는 <br>
