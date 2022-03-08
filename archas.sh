@@ -22,7 +22,7 @@ grub multiboot
 gnome
 vim
 
-http://k-lint.net - update 211011 - This is for korean.
+https://github.com/sephid86 - update 220308 - This is for korean.
 \033[0m
 ---Press any key to start the installation."
 read
