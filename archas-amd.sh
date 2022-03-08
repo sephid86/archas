@@ -134,6 +134,9 @@ su - ${userid} -c "cp -v /archas/styles.ass ~/.config/smplayer"
 su - ${userid} -c "cp -v /archas/terminalrc ~/.config/xfce4/terminal/"
 pacman -R gnome-terminal
 
+#기본 프로그램을 지정해줍니다.
+su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"i
+
 #AMD ATI 드라이버 설치합니다.
 #pacman -Sy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
