@@ -1,8 +1,9 @@
 #!/bin/bash
 AUTO_DIR=$(pwd)
 #-----아치리눅스 자동 설치 스크립트
-#-----last update 2021-10-11
-#-----http://k-lint.net
+#-----Archlinux auto setup - archas
+#-----last update 2022-03-08
+#-----https://github.com/sephid86
 echo -e "
 \033[41m
 
