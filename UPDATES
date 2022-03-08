@@ -4,8 +4,8 @@
 
 220308
 파일관리자에서 동영상 썸네일이 표시되지 않는 문제를 일부 해결하였습니다.
-archas-amdgpu 를 분리하였습니다.
-archas-amdgpu 에서 vulkan 활성화 되고 작동 되는것 까지 테스트 완료했습니다.
+archas-amdradeon 를 분리하였습니다.
+archas-amdradeon 에서 vulkan 활성화 되고 작동 되는것 까지 테스트 완료했습니다.
 
 220308
 스크립트가 intel CPU 에서만 사용될수 있는 내용을 발견하여
