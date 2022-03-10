@@ -44,7 +44,8 @@ read
 #시간설정
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 timedatectl set-local-rtc 1 --adjust-system-clock
-hwclock --systohc
+#hwclock --systohc
+#hwclock -w
 
 #언어설정
 echo ko_KR.UTF-8 UTF-8 > /etc/locale.gen
@@ -144,11 +145,6 @@ pacman -R gnome-terminal
 
 #기본 프로그램을 지정해줍니다.
 su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"
-
-#시간설정을 다시 한번 잡아줍니다.
-ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-timedatectl set-local-rtc 1 --adjust-system-clock
-hwclock --systohc
 
 #d2coding 폰트를 설치합니다.
 git clone https://github.com/naver/d2codingfont.git
