@@ -145,6 +145,7 @@ pacman -R gnome-terminal
 
 #기본 프로그램을 지정해줍니다.
 su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"
+su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 
 #d2coding 폰트를 설치합니다.
 git clone https://github.com/naver/d2codingfont.git
