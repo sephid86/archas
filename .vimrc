@@ -6,8 +6,8 @@
 "  jellybeans
 "
 " 만든사람 : 배달하는사람
-"  http://k-lint.net
-" Update : 2021-08-08
+"  http://github.com/sephid86
+" Update : 20220321
 "------------------------------
 set nocompatible
 filetype off
@@ -22,7 +22,7 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
@@ -121,13 +121,23 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"let g:syntastic_cpp_compiler = 'g++'
-"let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
-"let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
+let g:syntastic_c_compiler = 'gcc'
+let g:syntastic_c_compiler_options = "-std=c11 -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
 "----- Syntastic -----
 
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm setf php
+
+"----- GTK Syntax -----
+"au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/cairo.vim
+"au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/gdkpixbuf.vim
+"au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/glib.vim
+"au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/gtk3.vim
+"au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/xlib.vim
+"----- GTK Syntax -----
