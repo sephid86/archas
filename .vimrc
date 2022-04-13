@@ -29,6 +29,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 "Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'xolox/vim-easytags'
 "Plugin 'tagbar'
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -61,12 +62,13 @@ let g:airline_powerline_fonts = 1
 "----- NERDTree -----
 "nerdtree 토글 단축키 \nt
 "nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+"nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
+"let NERDTreeShowHidden=1
 map <Tab> :bn!<CR>
-map <C-PageUp> :bp!<CR>
-map <C-PageDown> :bn!<CR>
+"map <C-PageUp> :bp!<CR>
+"map <C-PageDown> :bn!<CR>
 "----- NERDTree -----
 
 "----- Jellybeans -----
