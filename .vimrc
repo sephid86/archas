@@ -26,12 +26,12 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
-"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'xolox/vim-easytags'
 "Plugin 'tagbar'
 "Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'blueyed/vim-diminactive'
 
 call vundle#end()
 filetype plugin indent on
