@@ -6,8 +6,8 @@
 "  jellybeans
 "
 " 만든사람 : 배달하는사람
-"  http://github.com/sephid86
-" Update : 20220321
+"  http://k-lint.net
+" Update : 2021-08-08
 "------------------------------
 set nocompatible
 filetype off
@@ -64,10 +64,8 @@ let g:airline_powerline_fonts = 1
 "nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
-"let NERDTreeShowHidden=1
-map <Tab> :bn!<CR>
-"map <C-PageUp> :bp!<CR>
-"map <C-PageDown> :bn!<CR>
+let NERDTreeShowHidden=1
+"nmap <F8> :TagbarToggle<CR>
 "----- NERDTree -----
 
 "----- Jellybeans -----
@@ -82,6 +80,20 @@ endif
 "젤리빈 활성화
 color jellybeans
 "----- Jellybeans -----
+
+"----- Key-map (임의 단축키 설정 - 일반모드) -----
+noremap <Tab>l :bn!<CR>
+noremap <Tab>h :bp!<CR>
+noremap <Tab>0 :G push<CR>
+noremap <Tab>1 :G status<CR>
+noremap <Tab>2 :G commit -a<CR>
+map <F5> :w<CR> :make!<CR>
+"command G0 :G push
+"command G1 :G status
+"command G2 :G commit -a
+"map <C-PageUp> :bp!<CR>
+"map <C-PageDown> :bn!<CR>
+"----- Key-map (임의 단축키 설정 - 일반모드) -----
 
 "----- Vim Base settings (vim 기본 설정들) -----
 if has("syntax")                                                                
@@ -107,8 +119,6 @@ set cursorline
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 set ignorecase
-
-map <F5> :w<CR> :make!<CR>
 "----- Vim Base settings (vim 기본 설정들) -----
 
 "----- Vim Add settings (vim 추가기능들) -----
@@ -129,11 +139,15 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = "-std=c++11 -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
+"let g:syntastic_cpp_compiler = 'g++'
+"let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
 let g:syntastic_c_compiler = 'gcc'
 let g:syntastic_c_compiler_options = "-std=c11 -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
 "----- Syntastic -----
+
+"----- tagbar -----
+"nmap <F8> :TagbarToggle<CR>
+"----- tagbar -----
 
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm setf php
 
