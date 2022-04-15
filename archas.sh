@@ -153,6 +153,7 @@ su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 
 mkdir -P /usr/share/fonts
 cp -vrf nanumfont /usr/share/fonts
+fc-cache -f -v
 
 echo -e "
 \033[01;32m 

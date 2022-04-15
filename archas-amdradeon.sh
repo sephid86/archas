@@ -165,6 +165,7 @@ pacman -Sy vulkan-tools
 
 mkdir -P /usr/share/fonts
 cp -vrf nanumfont /usr/share/fonts
+fc-cache -f -v
 
 echo -e "
 \033[01;32m 
