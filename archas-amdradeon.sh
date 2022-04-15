@@ -122,8 +122,8 @@ sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/b
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#gnome 설치 - 한글 입력기와 noto 폰트 설치됩니다.
-pacman -Sy gnome gnome-shell-extensions gnome-tweaks noto-fonts-cjk ibus-hangul 
+#gnome 설치
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
@@ -160,8 +160,11 @@ echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
 pacman -Sy vulkan-tools
 
 #d2coding 폰트를 설치합니다.
-git clone https://github.com/naver/d2codingfont.git
-unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
+#git clone https://github.com/naver/d2codingfont.git
+#unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
+
+mkdir -P /usr/share/fonts
+cp -vrf nanumfont /usr/share/fonts
 
 echo -e "
 \033[01;32m 
