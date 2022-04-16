@@ -82,17 +82,14 @@ color jellybeans
 "----- Jellybeans -----
 
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
-noremap <Tab>l :bn!<CR>
-noremap <Tab>h :bp!<CR>
-noremap <Tab>0 :G push<CR>
-noremap <Tab>1 :G status<CR>
-noremap <Tab>2 :G commit -a<CR>
-map <F5> :w<CR> :make!<CR>
-"command G0 :G push
-"command G1 :G status
-"command G2 :G commit -a
-"map <C-PageUp> :bp!<CR>
-"map <C-PageDown> :bn!<CR>
+noremap <Tab> :bn!<CR>
+command G0 :G push
+command G1 :G status
+command G2 :G commit -a
+map <A-home> :Errors<CR>
+map <A-end> :lclose<CR>
+map <A-pageup> :bp!<CR>
+map <A-pagedown> :bn!<CR>
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
 
 "----- Vim Base settings (vim 기본 설정들) -----
@@ -100,6 +97,7 @@ if has("syntax")
  syntax on
 endif
 set t_Co=256
+set fileencodings=utf-8,euc-kr
 set autoindent
 set cindent
 set smartindent
