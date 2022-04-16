@@ -139,6 +139,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+
 "let g:syntastic_cpp_compiler = 'g++'
 "let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -pthread -pipe `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -lmysqlclient"
 let g:syntastic_c_compiler = 'gcc'
