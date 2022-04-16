@@ -133,7 +133,7 @@ su - ${userid} -c "git config --global core.editor vim"
 
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
 pacman -Syu
-pacman -Sy smplayer smplayer-skins smplayer-themes gst-libav gst-plugins-ugly rhythmbox xfce4-terminal ffmpegthumbnailer
+pacman -Sy smplayer smplayer-skins smplayer-themes gst-libav gst-plugins-ugly rhythmbox xfce4-terminal ffmpegthumbnailer fontconfig
 
 #xfce4 터미널을 설정합니다.
 su - ${userid} -c "mkdir -p ~/.config/smplayer"
