@@ -24,6 +24,13 @@ vim 설정을 조금 변경하였습니다.
 -TAB 키 누른뒤 1키:Git status 2키:Git commit -a 0키:Git push
 
 220417
-vim 설정 중에 syntastic 의 location list 가 열리지 않도록 수정했습니다.
-(버퍼가 하나 더 열려서 버퍼 이동에 불편이 있고)
-(location list 의 버퍼를 닫으면 해당 파일도 같이 닫히는 심각한 불편함이...)
+vim 설정의 syntastic 에서 자동으로 열리던 문법 오류 리스트를 수동으로 변경했습니다.
+vim 단축키를 대폭 변경했습니다.
+- Tab 키를 누를 때 마다 버퍼를 이동합니다.
+- Alt+PageUP 키를 누르면 이전 버퍼로 이동합니다.
+- Alt+PageDown 키를 누르면 다음 버퍼로 이동합니다.
+- Alt+Home 키를 누르면 문법 오류 리스트가 열립니다. 
+- Alt+End 키를 누르면 문법 오류 리스트가 닫힙니다.
+- 커맨드 모드에서 : G1 을 입력하면 git status 를 수행합니다.
+- 커맨드 모드에서 : G2 을 입력하면 git commit -a 를 수행합니다.
+- 커맨드 모드에서 : G0 을 입력하면 git push 를 수행합니다.
