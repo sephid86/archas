@@ -22,3 +22,8 @@ vim 설정을 조금 변경하였습니다.
 -NerdTree는 기본설정인 CTRL+T
 -일반모드에서 TAB키 누른뒤 h키:왼쪽버퍼로 이동 l키:오른쪽버퍼로 이동
 -TAB 키 누른뒤 1키:Git status 2키:Git commit -a 0키:Git push
+
+220417
+vim 설정 중에 syntastic 의 location list 가 열리지 않도록 수정했습니다.
+(버퍼가 하나 더 열려서 버퍼 이동에 불편이 있고)
+(location list 의 버퍼를 닫으면 해당 파일도 같이 닫히는 심각한 불편함이...)
