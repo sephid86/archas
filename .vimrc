@@ -86,6 +86,7 @@ noremap <Tab> :lclose<CR>:bn!<CR>
 command G0 :G push
 command G1 :G status
 command G2 :G commit -a
+map <C-End> :lclose<CR>:bd!<CR>
 map <A-home> :Errors<CR>
 map <A-end> :lclose<CR>
 map <A-pageup> :lclose<CR>:bp!<CR>
