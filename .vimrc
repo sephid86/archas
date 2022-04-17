@@ -91,7 +91,7 @@ noremap <Tab> :lclose<CR>:bn!<CR>
 command G0 :G push
 command G1 :G status
 command G2 :G commit -a
-noremap <C-End> :lclose<CR>:bd!<CR>
+noremap <C-End> :lclose<CR>:bp\|bd! #<CR>
 noremap <A-home> :Errors<CR>
 noremap <A-end> :lclose<CR>
 noremap <A-pageup> :lclose<CR>:bp!<CR>
