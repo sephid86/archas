@@ -87,15 +87,15 @@ color jellybeans
 "----- Jellybeans -----
 
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
-noremap <Tab> :lclose<CR>:bn!<CR>
+noremap <Tab> :bn!<CR>
 command G0 :G push
 command G1 :G status
 command G2 :G commit -a
-noremap <C-End> :lclose<CR>:bp\|bd! #<CR>
+noremap <C-End> :bp\|bd! #<CR>
 noremap <A-home> :Errors<CR>
 noremap <A-end> :lclose<CR>
-noremap <A-pageup> :lclose<CR>:bp!<CR>
-noremap <A-pagedown> :lclose<CR>:bn!<CR>
+noremap <A-pageup> :bp!<CR>
+noremap <A-pagedown> :bn!<CR>
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
 
 "----- Vim Base settings (vim 기본 설정들) -----
@@ -138,6 +138,8 @@ au BufReadPost *
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+autocmd BufWinEnter * if &buftype == "quickfix" | bn! | endif
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
