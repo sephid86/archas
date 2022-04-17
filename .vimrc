@@ -104,6 +104,7 @@ if has("syntax")
 endif
 set t_Co=256
 set fileencodings=utf-8,euc-kr
+set nu
 set autoindent
 set cindent
 set smartindent
@@ -137,8 +138,6 @@ au BufReadPost *
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-autocmd WinLeave * lclose
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
