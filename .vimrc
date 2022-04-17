@@ -60,11 +60,16 @@ let g:airline_powerline_fonts = 1
 
 "----- NERDTree -----
 "nerdtree 토글 단축키 \nt
-"nnoremap <leader>n :NERDTreeFocus<CR>
-"nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-"nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 "nmap <F8> :TagbarToggle<CR>
 "----- NERDTree -----
 
@@ -86,11 +91,11 @@ noremap <Tab> :lclose<CR>:bn!<CR>
 command G0 :G push
 command G1 :G status
 command G2 :G commit -a
-map <C-End> :lclose<CR>:bd!<CR>
-map <A-home> :Errors<CR>
-map <A-end> :lclose<CR>
-map <A-pageup> :lclose<CR>:bp!<CR>
-map <A-pagedown> :lclose<CR>:bn!<CR>
+noremap <C-End> :lclose<CR>:bd!<CR>
+noremap <A-home> :Errors<CR>
+noremap <A-end> :lclose<CR>
+noremap <A-pageup> :lclose<CR>:bp!<CR>
+noremap <A-pagedown> :lclose<CR>:bn!<CR>
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
 
 "----- Vim Base settings (vim 기본 설정들) -----
