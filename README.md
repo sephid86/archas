@@ -1,6 +1,7 @@
 # archas
 
 - efi 설치. 멀티부팅을 위해 grub 설치-<br>
+(efi 설치이므로 virtual box 나 같은 가상환경 설치는 지원되지 않습니다.)
 -다른 운영체제와 다른 저장장치사용-<br>
 -예를 들어 윈도우는 1번 SSD(sda) 리눅스는 2번 SSD(sdb)-<br>
 <br>
