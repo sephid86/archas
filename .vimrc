@@ -6,8 +6,9 @@
 "  jellybeans
 "
 " 만든사람 : 배달하는사람
-"  http://k-lint.net
-" Update : 2021-08-08
+"  https://github.com/sephid86
+"  sephid86@gmail.com
+" Update : 2022-04-18
 "------------------------------
 set nocompatible
 filetype off
