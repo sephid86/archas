@@ -88,15 +88,15 @@ color jellybeans
 "----- Jellybeans -----
 
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
-noremap <Tab> :bn!<CR>
+noremap <Tab> :lclose<CR>:bn!<CR>
 command G0 :G push
 command G1 :G status
 command G2 :G commit -a
-noremap <C-End> :bp\|bd! #<CR>
+noremap <C-End> :lclose<CR>:bp\|bd! #<CR>
 noremap <A-home> :Errors<CR>
 noremap <A-end> :lclose<CR>
-noremap <A-pageup> :bp!<CR>
-noremap <A-pagedown> :bn!<CR>
+noremap <A-pageup> :lclose<CR>:bp!<CR>
+noremap <A-pagedown> :lclose<CR>:bn!<CR>
 "----- Key-map (임의 단축키 설정 - 일반모드) -----
 
 "----- Vim Base settings (vim 기본 설정들) -----
