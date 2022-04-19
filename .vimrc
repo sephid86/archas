@@ -127,7 +127,6 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 set ignorecase
 set smartcase
-set hlsearch
 "----- Vim Base settings (vim 기본 설정들) -----
 
 "----- Vim Add settings (vim 추가기능들) -----
