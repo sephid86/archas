@@ -104,7 +104,7 @@ if has("syntax")
  syntax on
 endif
 set t_Co=256
-set fileencodings=utf-8
+set fileencodings=utf-8,cp949
 set nu
 set completeopt=menuone,noinsert,noselect
 set autoindent
