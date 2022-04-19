@@ -106,6 +106,7 @@ endif
 set t_Co=256
 set fileencodings=utf-8,euc-kr
 set nu
+set completeopt=menuone,noinsert,noselect
 set autoindent
 set cindent
 set smartindent
