@@ -8,7 +8,7 @@
 " 만든사람 : 배달하는사람
 "  https://github.com/sephid86
 "  sephid86@gmail.com
-" Update : 2022-04-18
+" Update : 2022-04-20
 "------------------------------
 set nocompatible
 filetype off
@@ -127,6 +127,7 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 set ignorecase
 set smartcase
+set autochdir
 "----- Vim Base settings (vim 기본 설정들) -----
 
 "----- Vim Add settings (vim 추가기능들) -----
