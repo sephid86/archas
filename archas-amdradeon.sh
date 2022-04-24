@@ -164,7 +164,7 @@ pacman -Sy vulkan-tools
 #unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
 mkdir -p /usr/share/fonts
-cp -vrf nanumfont /usr/share/fonts
+cp -vrf /archas/nanumfont /usr/share/fonts
 fc-cache -f -v
 
 echo -e "

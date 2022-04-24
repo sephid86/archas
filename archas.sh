@@ -152,7 +152,7 @@ su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 #unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
 mkdir -p /usr/share/fonts
-cp -vrf nanumfont /usr/share/fonts
+cp -vrf /archas/nanumfont /usr/share/fonts
 fc-cache -f -v
 
 echo -e "
