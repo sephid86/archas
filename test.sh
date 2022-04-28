@@ -67,7 +67,7 @@ cp bash.bashrc /etc
 cp .bashrc ~/
 
 #기본 설정파일을 복사합니다.
-cp -rf skel /etc/skel
+cp -rf skel /etc
 
 #pacman 컬러 설정입니다.
 sed -i 's/#Color/Color/g' /etc/pacman.conf
