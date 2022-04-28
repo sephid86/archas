@@ -2,7 +2,7 @@
 AUTO_DIR=$(pwd)
 #-----아치리눅스 자동 설치 스크립트
 #-----Archlinux auto setup - archas
-#-----last update 2022-04-28
+#-----last update 2022-04-29
 #-----https://github.com/sephid86
 echo -e "
 \033[41m
@@ -64,8 +64,10 @@ echo "MAKEFLAGS='-j$(nproc)'" >> /etc/makepkg.conf
 #배쉬 컬러 설정입니다.
 cp DIR_COLORS /etc
 cp bash.bashrc /etc
-cp .bashrc /etc/skel
 cp .bashrc ~/
+
+#기본 설정파일을 복사합니다.
+cp -rf skel /etc
 
 #pacman 컬러 설정입니다.
 sed -i 's/#Color/Color/g' /etc/pacman.conf
@@ -81,6 +83,7 @@ echo -e "
 read userid
 useradd -m -g users -G wheel -s /bin/bash ${userid}
 
+#계정 패스워드 설정
 echo -e "
 \033[01;32m -Please enter your user password \033[00m"
 passwd ${userid}
@@ -93,8 +96,8 @@ Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
 Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 #미러리스트를 적용시켜 줍니다.
-echo "[multilib]
-Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 pacman -Sy archlinux-keyring
 
@@ -138,17 +141,7 @@ su - ${userid} -c "git config --global core.editor vim"
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
 pacman -Sy smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal fontconfig
 
-#xfce4 터미널을 설정합니다.
-su - ${userid} -c "mkdir -p ~/.config/smplayer"
-su - ${userid} -c "mkdir -p ~/.config/xfce4/terminal"
-su - ${userid} -c "cp -v /archas/smplayer.ini ~/.config/smplayer"
-su - ${userid} -c "cp -v /archas/styles.ass ~/.config/smplayer"
-su - ${userid} -c "cp -v /archas/terminalrc ~/.config/xfce4/terminal/"
 pacman -R gnome-terminal
-
-#기본 프로그램을 지정해줍니다.
-su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"
-su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
@@ -165,6 +158,7 @@ su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 #git clone https://github.com/naver/d2codingfont.git
 #unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
+#D2Coding - 나눔 폰트를 설치합니다.
 mkdir -p /usr/share/fonts
 cp -vrf /archas/nanumfont /usr/share/fonts
 #fc-cache -f -v
