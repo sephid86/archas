@@ -86,15 +86,17 @@ echo -e "
 passwd ${userid}
 
 #대한민국 미러 사이트를 등록합니다. - 원활한 다운속도를 위해.
-#echo "Server = https://mirror.premi.st/archlinux/\$repo/os/\$arch
-#Server = http://mirror.premi.st/archlinux/\$repo/os/\$arch
-#Server = https://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
-#Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
-#Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+echo "Server = https://mirror.premi.st/archlinux/\$repo/os/\$arch
+Server = http://mirror.premi.st/archlinux/\$repo/os/\$arch
+Server = https://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
+Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
+Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 #미러리스트를 적용시켜 줍니다.
 echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+
+pacman -Sy archlinux-keyring
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
 pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
@@ -124,8 +126,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome
-pacman -Sy gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.

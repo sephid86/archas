@@ -96,6 +96,8 @@ Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mi
 echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
+pacman -Sy archlinux-keyring
+
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
 pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
 systemctl enable NetworkManager
@@ -124,8 +126,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome
-pacman -Sy gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
@@ -152,13 +153,13 @@ su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
-#pacman -Sy amdvlk vulkan-radeon
-#echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
-#echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
-#echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
-#echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
+pacman -Sy amdvlk vulkan-radeon
+echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
+echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
+echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
+echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
 
-#pacman -Sy vulkan-tools
+pacman -Sy vulkan-tools
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
