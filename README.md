@@ -70,6 +70,7 @@ arch-chroot /mnt<br>
 <br>
 <br>
 추가로 한글 입력기 설정과 크롬 설치, yay 설치를 원하시는 경우는 <br>
+(220429 업데이트로 한글 입력기도 자동으로 설정됩니다.)<br>
 위의 설치과정 종료후 재부팅하신후 아래 내용을 진행하시면 됩니다.<br>
 아래 내용은 root 계정에서 실행되면 안되므로 <br>
 반드시 일반 사용자계정으로 진행하셔야 합니다. <br>
@@ -78,14 +79,14 @@ arch-chroot /mnt<br>
 $ cp -r /archas ~/<br>
 <br>
 -한글 입력기 설정-<br>
-$ cd ~/archas/AfterReboot/<br>
+$ cd ~/archas/old-version/<br>
 $ ./hangul.sh<br>
 <br>
 -크롬 설치-<br>
-$ cd ~/archas/AfterReboot/<br>
+$ cd ~/<br>
 $ ./chrome.sh<br>
 <br>
 -yay 설치-<br>
 (위의 크롬 설치를 진행하셨으면 이것을 실행할필요 없습니다.)<br>
-$ cd ~/archas/AfterReboot/<br>
+$ cd ~/<br>
 $ ./yay.sh<br>
