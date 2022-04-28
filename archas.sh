@@ -96,7 +96,7 @@ Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
 Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 #미러리스트를 적용시켜 줍니다.
-sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
+sed -i 's/#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 pacman -Sy archlinux-keyring
