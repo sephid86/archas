@@ -86,11 +86,11 @@ echo -e "
 passwd ${userid}
 
 #대한민국 미러 사이트를 등록합니다. - 원활한 다운속도를 위해.
-echo "Server = https://mirror.premi.st/archlinux/\$repo/os/\$arch
-Server = http://mirror.premi.st/archlinux/\$repo/os/\$arch
-Server = https://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
-Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
-Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+#echo "Server = https://mirror.premi.st/archlinux/\$repo/os/\$arch
+#Server = http://mirror.premi.st/archlinux/\$repo/os/\$arch
+#Server = https://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
+#Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
+#Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 #미러리스트를 적용시켜 줍니다.
 echo "[multilib]
