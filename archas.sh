@@ -40,9 +40,11 @@ else
   CPUVendorID="intel"
 fi
 
+
 read
 #시간설정
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+timedatectl set-ntp true
 timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
 #hwclock -w
@@ -95,7 +97,7 @@ echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
-pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
+pacman -S vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
@@ -116,24 +118,23 @@ su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/
 su - ${userid} -c "vim +PluginInstall +qall"
 
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
-pacman -Sy grub
+pacman -S grub
 sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/bin/grub-mkconfig
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
+pacman -S gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
-pacman -Sy sudo
+pacman -S sudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 su - ${userid} -c "git config --global core.editor vim"
 
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
-pacman -Syu
-pacman -Sy smplayer smplayer-skins smplayer-themes gst-libav gst-plugins-ugly rhythmbox xfce4-terminal ffmpegthumbnailer fontconfig
+pacman -S smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal fontconfig
 
 #xfce4 터미널을 설정합니다.
 su - ${userid} -c "mkdir -p ~/.config/smplayer"
@@ -147,13 +148,24 @@ pacman -R gnome-terminal
 su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"
 su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
 
+#AMD ATI 드라이버 설치합니다.
+#pacman -Sy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
+
+#pacman -S amdvlk vulkan-radeon
+#echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
+#echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
+#echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
+#echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
+
+#pacman -S vulkan-tools
+
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
 #unzip d2codingfont/D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts
 
 mkdir -p /usr/share/fonts
 cp -vrf /archas/nanumfont /usr/share/fonts
-fc-cache -f -v
+#fc-cache -f -v
 
 echo -e "
 \033[01;32m 
