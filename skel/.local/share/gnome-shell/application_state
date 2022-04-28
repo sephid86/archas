@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="org.gnome.gedit.desktop" score="12" last-seen="1651158393"/>
+    <application id="google-chrome.desktop" score="263" last-seen="1651158102"/>
+    <application id="org.gnome.Extensions.desktop" score="3" last-seen="1651158113"/>
+    <application id="org.gnome.Shell.Extensions.desktop" score="12" last-seen="1651156699"/>
+    <application id="org.gnome.Nautilus.desktop" score="19" last-seen="1651158388"/>
+    <application id="xfce4-terminal.desktop" score="70" last-seen="1651158164"/>
+  </context>
+</application-state>
