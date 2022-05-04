@@ -130,7 +130,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
@@ -143,7 +143,6 @@ su - ${userid} -c "git config --global core.editor vim"
 pacman -Sy smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal
 
 pacman -R gnome-terminal
-pacman -R gnome-software
 
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
