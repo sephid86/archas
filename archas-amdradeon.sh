@@ -46,7 +46,7 @@ read
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 #timedatectl set-ntp true
 #timedatectl set-local-rtc 1
-timedatectl set-local-rtc 1 --adjust-system-clock
+#timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
 #hwclock -w
 
@@ -164,6 +164,8 @@ pacman -Sy vulkan-tools
 mkdir -p /usr/share/fonts
 cp -vrf /archas/nanumfont /usr/share/fonts
 #fc-cache -f -v
+
+timedatectl set-local-rtc 1 --adjust-system-clock
 
 echo -e "
 \033[01;32m 
