@@ -130,7 +130,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
