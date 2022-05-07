@@ -150,13 +150,15 @@ pacman -R gnome-software
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
-pacman -Sy amdvlk vulkan-radeon
+pacman -Sy amdvlk vulkan-radeon lib32-vulkan-radeon lib32-vulkan-icd-loader
 echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
 echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
 echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
 echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
 
 pacman -Sy vulkan-tools
+
+pacman -Sy mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
