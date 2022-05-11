@@ -44,14 +44,13 @@ fi
 read
 #시간설정
 #hwclock -s
-timedatectl set-local-rtc 1
 timedatectl set-timezone Asia/Seoul
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-#timedatectl set-ntp true
+timedatectl set-local-rtc 1
+timedatectl set-ntp true
 #timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
-#hwclock -w
-#hwclock -s
+hwclock -w
 
 #언어설정
 echo ko_KR.UTF-8 UTF-8 > /etc/locale.gen
@@ -126,6 +125,7 @@ su - ${userid} -c "cd ~/.vim/colors;curl -O https://raw.githubusercontent.com/na
 su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 su - ${userid} -c "vim +PluginInstall +qall"
 
+su - ${userid} -c "timedatectl set-local-rtc 1"
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
 pacman -Sy grub
 sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/bin/grub-mkconfig
@@ -153,13 +153,15 @@ pacman -R gnome-software
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
-#pacman -Sy amdvlk vulkan-radeon
+#pacman -Sy amdvlk vulkan-radeon lib32-vulkan-radeon lib32-vulkan-icd-loader
 #echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
 #echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
 #echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
 #echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
 
 #pacman -Sy vulkan-tools
+
+pacman -Sy mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
