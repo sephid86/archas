@@ -44,13 +44,13 @@ fi
 read
 #시간설정
 #hwclock -s
-#timedatectl set-timezone Asia/Seoul
+timedatectl set-timezone Asia/Seoul
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 timedatectl set-local-rtc 1
-#timedatectl set-ntp true
+timedatectl set-ntp true
 #timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
-#hwclock -w
+hwclock -w
 
 #언어설정
 echo ko_KR.UTF-8 UTF-8 > /etc/locale.gen
