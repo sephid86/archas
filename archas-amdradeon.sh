@@ -102,6 +102,7 @@ Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mi
 sed -i 's/#\[multilib\]/\[multilib\]\nInclude = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
+pacman -Syu
 pacman -Sy archlinux-keyring
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
