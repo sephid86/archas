@@ -121,3 +121,4 @@ x-scheme-handler/http=org.gnome.Epiphany.desktop;
 text/html=org.gnome.Epiphany.desktop;
 application/xhtml+xml=org.gnome.Epiphany.desktop;
 x-scheme-handler/https=org.gnome.Epiphany.desktop;
+text/plain=org.gnome.gedit.desktop;
