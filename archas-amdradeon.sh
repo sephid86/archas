@@ -135,7 +135,7 @@ pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
-pacman -Sy sudo
+#pacman -Sy sudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 su - ${userid} -c "git config --global core.editor vim"
@@ -146,7 +146,7 @@ pacman -Sy smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav g
 pacman -Sy libreoffice-fresh-ko gimp
 
 pacman -R gnome-terminal
-#pacman -R gnome-software
+pacman -R gnome-software
 
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
