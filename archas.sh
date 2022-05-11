@@ -2,7 +2,7 @@
 AUTO_DIR=$(pwd)
 #-----아치리눅스 자동 설치 스크립트
 #-----Archlinux auto setup - archas
-#-----last update 2022-04-29
+#-----last update 2022-05-12
 #-----https://github.com/sephid86
 echo -e "
 \033[41m
