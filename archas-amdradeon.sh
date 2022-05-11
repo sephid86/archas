@@ -45,12 +45,12 @@ read
 #시간설정
 #hwclock -s
 timedatectl set-timezone Asia/Seoul
-ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-timedatectl set-local-rtc 1
+#ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+#timedatectl set-local-rtc 1
 timedatectl set-ntp true
 #timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
-hwclock -w
+#hwclock -w
 
 #언어설정
 echo ko_KR.UTF-8 UTF-8 > /etc/locale.gen
@@ -125,7 +125,6 @@ su - ${userid} -c "cd ~/.vim/colors;curl -O https://raw.githubusercontent.com/na
 su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 su - ${userid} -c "vim +PluginInstall +qall"
 
-su - ${userid} -c "timedatectl set-local-rtc 1"
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
 pacman -Sy grub
 sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/bin/grub-mkconfig
