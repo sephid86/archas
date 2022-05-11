@@ -44,9 +44,9 @@ fi
 read
 #시간설정
 #hwclock -s
-timedatectl set-timezone Asia/Seoul
-timedatectl set-local-rtc 1
+#timedatectl set-timezone Asia/Seoul
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+timedatectl set-local-rtc 1
 #timedatectl set-ntp true
 #timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
