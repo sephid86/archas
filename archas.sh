@@ -2,7 +2,7 @@
 AUTO_DIR=$(pwd)
 #-----아치리눅스 자동 설치 스크립트
 #-----Archlinux auto setup - archas
-#-----last update 2022-05-12
+#-----last update 2022-05-13
 #-----https://github.com/sephid86
 echo -e "
 \033[41m
@@ -22,7 +22,7 @@ grub multiboot
 gnome
 vim
 
-https://github.com/sephid86 - update 220308 - This is for korean.
+https://github.com/sephid86 - update 220513 - This is for korean.
 \033[0m
 ---Press any key to start the installation."
 #-1.리눅스 베이스 설치
