@@ -2,7 +2,7 @@
 AUTO_DIR=$(pwd)
 #-----아치리눅스 자동 설치 스크립트
 #-----Archlinux auto setup - archas
-#-----last update 2022-04-28
+#-----last update 2022-05-12
 #-----https://github.com/sephid86
 echo -e "
 \033[41m
@@ -43,9 +43,12 @@ fi
 
 read
 #시간설정
+#hwclock -s
+#timedatectl set-timezone Asia/Seoul
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+#timedatectl set-local-rtc 1
 timedatectl set-ntp true
-timedatectl set-local-rtc 1 --adjust-system-clock
+#timedatectl set-local-rtc 1 --adjust-system-clock
 #hwclock --systohc
 #hwclock -w
 
@@ -96,9 +99,10 @@ Server = http://ftp.lanet.kr/pub/archlinux/\$repo/os/\$arch
 Server = http://mirror.anigil.com/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 #미러리스트를 적용시켜 줍니다.
-sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
+sed -i 's/#\[multilib\]/\[multilib\]\nInclude = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
+pacman -Syu
 pacman -Sy archlinux-keyring
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
@@ -129,40 +133,35 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #gnome 설치
-pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts-cjk
+pacman -Sy gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk
 systemctl enable gdm
 
 #사용자 계정 sudo 명령어 설정.
-pacman -Sy sudo
+#pacman -Sy sudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 su - ${userid} -c "git config --global core.editor vim"
 
 #동영상 재생 프로그램, 터미널, 음악 재생 프로그램 설치합니다. 
-pacman -Sy smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal fontconfig
+pacman -Sy smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal
 
-#xfce4 터미널을 설정합니다.
-#su - ${userid} -c "mkdir -p ~/.config/smplayer"
-#su - ${userid} -c "mkdir -p ~/.config/xfce4/terminal"
-#su - ${userid} -c "cp -v /archas/smplayer.ini ~/.config/smplayer"
-#su - ${userid} -c "cp -v /archas/styles.ass ~/.config/smplayer"
-#su - ${userid} -c "cp -v /archas/terminalrc ~/.config/xfce4/terminal/"
+pacman -Sy libreoffice-fresh-ko gimp
+
 pacman -R gnome-terminal
-
-#기본 프로그램을 지정해줍니다.
-#su - ${userid} -c "cp -v /archas/mimeapps.list ~/.config"
-su - ${userid} -c "timedatectl set-local-rtc 1 --adjust-system-clock"
+pacman -R gnome-software
 
 #AMD ATI 드라이버 설치합니다.
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
 
-pacman -Sy amdvlk vulkan-radeon
+pacman -Sy amdvlk vulkan-radeon lib32-vulkan-radeon lib32-vulkan-icd-loader
 echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
 echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
 echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
 echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
 
 pacman -Sy vulkan-tools
+
+pacman -Sy mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
@@ -172,6 +171,9 @@ pacman -Sy vulkan-tools
 mkdir -p /usr/share/fonts
 cp -vrf /archas/nanumfont /usr/share/fonts
 #fc-cache -f -v
+
+#test
+su - sephid86 -c "gnome-extensions install /archas/test/dash-to-dock-cosmic-gnome-shell-extension.zip"
 
 echo -e "
 \033[01;32m 
