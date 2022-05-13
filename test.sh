@@ -173,7 +173,7 @@ cp -vrf /archas/nanumfont /usr/share/fonts
 #fc-cache -f -v
 
 #test
-su - sephid86 -c "gnome-extensions install /archas/test/dash-to-dock-cosmic-gnome-shell-extension.zip"
+#su - sephid86 -c "gnome-extensions install /archas/test/dash-to-dock-cosmic-gnome-shell-extension.zip"
 
 echo -e "
 \033[01;32m 
