@@ -173,7 +173,9 @@ cp -vrf /archas/nanumfont /usr/share/fonts
 #fc-cache -f -v
 
 #test
-#su - sephid86 -c "gnome-extensions install /archas/test/dash-to-dock-cosmic-gnome-shell-extension.zip"
+su - sephid86 -c "gnome-extensions install /archas/extensions/transparent-top-bar.zip"
+su - sephid86 -c "gnome-extensions install /archas/extensions/dash-to-dock-cosmic.zip"
+su - sephid86 -c "gnome-extensions install /archas/extensions/trayIconsReloaded.zip"
 
 echo -e "
 \033[01;32m 
