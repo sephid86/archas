@@ -1,0 +1,13 @@
+
+아치리눅스에서 리그오브레전드 실행 방법.
+
+$ yay -S leagueoflegends
+
+$ leagueoflegends install
+
+-리그오브레전드에서 한글 입력이 안될때-
+
+$ WINEPREFIX=~/.local/share/leagueoflegends/ /opt/wine-lol/bin/wine reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v UseXIM /t REG_SZ /d Y /f
+
+$ WINEPREFIX=~/.local/share/leagueoflegends/ /opt/wine-lol/bin/wine reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v InputStyle /t REG_SZ /d root /f
+

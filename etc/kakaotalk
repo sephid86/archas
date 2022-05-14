@@ -1,0 +1,8 @@
+
+카카오톡에서 한글 입력이 정상적이지 않을때
+
+$ wine reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v InputStyle /t REG_SZ /d root /f
+
+혹은
+
+$ WINEPREFIX=~/카카오톡이설치된와인경로/ wine reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v InputStyle /t REG_SZ /d root /f
