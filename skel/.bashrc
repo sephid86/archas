@@ -1,7 +1,12 @@
 #
 # ~/.bashrc
 #
-
+#-----arch-powrline---($ sudo pacman -S powerline --needed)
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#. /usr/share/powerline/bindings/bash/powerline.sh
+#-----arch-powrline-----
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -22,3 +27,7 @@ alias bakweb='scp -r 접속아이디@접속주소:~/www ~/; tar -zcvf ~/$(date +
 alias bakdb='ssh 접속아이디@접속주소 mysqldump -u디비아이디 > $(date +%y%m%d).sql; tar -zcvf $(date +%y%m%d)-db.tgz $(date +%y%m%d).sql; rm $(date +%y%m%d).sql'
 alias bakall='bakweb; bakdb'
 
+#alias tmux1='tmux new -d;tmux split-pane -h;tmux split-pane -v;tmux select-pane -t 0;tmux attach'
+alias tmux1='tmux new -d;tmux splitp -h;tmux splitp -v;tmux selectp -t 0;tmux attach'
+
+alias vit='tmux new -d;tmux send-keys "vi" C-m;tmux splitp -v;tmux resizep -D 20;tmux splitp -h;tmux selectp -t 0;tmux attach'
