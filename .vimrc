@@ -8,7 +8,7 @@
 " 만든사람 : 배달하는사람
 "  https://github.com/sephid86
 "  sephid86@gmail.com
-" Update : 2022-04-20
+" Update : 2022-06-03
 "------------------------------
 set nocompatible
 filetype off
@@ -172,3 +172,8 @@ au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm setf php
 "au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/gtk3.vim
 "au BufNewFile,BufRead *.c so ~/.vim/gtk-vim-syntax/xlib.vim
 "----- GTK Syntax -----
+
+"----- YCM -----
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+"----- YCM -----

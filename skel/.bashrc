@@ -28,6 +28,6 @@ alias bakdb='ssh 접속아이디@접속주소 mysqldump -u디비아이디 > $(da
 alias bakall='bakweb; bakdb'
 
 #alias tmux1='tmux new -d;tmux split-pane -h;tmux split-pane -v;tmux select-pane -t 0;tmux attach'
-alias tmux1='tmux new -d;tmux splitp -h;tmux splitp -v;tmux selectp -t 0;tmux attach'
+#alias tmux1='tmux new -d;tmux splitp -h;tmux splitp -v;tmux selectp -t 0;tmux attach'
 
-alias vit='tmux new -d;tmux send-keys "vi" C-m;tmux splitp -v;tmux resizep -D 20;tmux splitp -h;tmux selectp -t 0;tmux attach'
+#alias vit='tmux new -d;tmux send-keys "vi" C-m;tmux splitp -v;tmux resizep -D 20;tmux splitp -h;tmux selectp -t 0;tmux attach'
