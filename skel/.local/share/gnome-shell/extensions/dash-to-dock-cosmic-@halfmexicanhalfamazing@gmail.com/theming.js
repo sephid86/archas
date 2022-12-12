@@ -33,6 +33,17 @@ const TransparencyMode = {
     DYNAMIC:  3
 };
 
+const Labels = Object.freeze({
+    TRANSPARENCY: Symbol('transparency'),
+});
+
+var PositionStyleClass = Object.freeze([
+    'top',
+    'right',
+    'bottom',
+    'left',
+]);
+
 /**
  * Manage theme customization and custom theme support
  */
@@ -48,6 +59,11 @@ var ThemeManager = class DashToDock_ThemeManager {
         this._customizedBackground = {red: 0, green: 0, blue: 0, alpha: 0};
         this._customizedBorder = {red: 0, green: 0, blue: 0, alpha: 0};
         this._transparency = new Transparency(dock);
+        
+        this._border_radius = 100;
+        this._floating_margin = 4;
+
+        this._dock_position = 3
 
         this._signalsHandler.add([
             // When theme changes re-obtain default background color
@@ -248,19 +264,32 @@ var ThemeManager = class DashToDock_ThemeManager {
             return;
 
         let newStyle = '';
-        let position = Utils.getPosition(settings);
+ 	let position = Utils.getPosition(settings);
 
-        // obtain theme border settings
+	// obtain theme border settings
         let themeNode = this._dash._background.get_theme_node();
         let borderColor = themeNode.get_border_color(St.Side.TOP);
         let borderWidth = themeNode.get_border_width(St.Side.TOP);
 
-        // We're copying border and corner styles to left border and top-left
+	 // We're copying border and corner styles to left border and top-left
         // corner, also removing bottom border and bottom-right corner styles
         let borderInner = '';
         let borderMissingStyle = '';
 
-        if (this._rtl && (position != St.Side.RIGHT))
+        this._border_radius   = settings.get_int('border-radius');
+        this._floating_margin = settings.get_int('floating-margin'); 
+        this._dock_position   = settings.get_enum('dock-position');
+        
+        let position_keys = [
+            "top",
+            "right",
+            "bottom",
+            "left"
+        ]
+        
+        let pos_string = position_keys[this._dock_position];
+
+ 	if (this._rtl && (position != St.Side.RIGHT))
             borderMissingStyle = 'border-right: ' + borderWidth + 'px solid ' +
                    borderColor.to_string() + ';';
         else if (!this._rtl && (position != St.Side.LEFT))
@@ -275,16 +304,44 @@ var ThemeManager = class DashToDock_ThemeManager {
             this._dash._background.set_style(newStyle);
         }
 
+        if(settings.forceStraightCorner || settings.extendHeight){
+            newStyle = newStyle + `border-radius: 0px;`;
+        }else {
+            newStyle = newStyle + `border-radius: ${this._border_radius}px;`;
+        }
+        this._dash._background.set_style(newStyle);
+       
+
+        if(settings.extendHeight){
+            let marginStyle = `margin-${pos_string}: 0px;`
+            this._dash.set_style(marginStyle);;
+        } else {
+            let marginStyle = `margin-${pos_string}: ${this._floating_margin}px;`;
+            this._dash.set_style(marginStyle);
+        }
+        
+
         // Customize background
         const fixedTransparency = settings.transparencyMode === TransparencyMode.FIXED;
         const defaultTransparency = settings.transparencyMode === TransparencyMode.DEFAULT;
         if (!defaultTransparency && !fixedTransparency) {
             this._transparency.enable();
-        }
-        else if (!defaultTransparency || settings.customBackgroundColor) {
-            newStyle = newStyle + 'background-color:'+ this._customizedBackground + '; ' +
-                       'border-color:'+ this._customizedBorder + '; ' +
-                       'transition-delay: 0s; transition-duration: 0.250s;';
+        } else {
+            let custom_opacity = settings.get_double('background-opacity');
+            let use_custom_background = settings.get_boolean('custom-background-color');
+            let background_color = "";
+
+            if(use_custom_background) {
+                const [ret, color] = Clutter.Color.from_string(settings.get_string('background-color'));
+                background_color = `rgba(${color.red}, ${color.green}, ${color.blue}, ${custom_opacity})`;
+            } else {
+                let themenode = this._dash._background.get_theme_node();
+                let themeColor = themenode.get_background_color();
+                
+                background_color = `rgba(${themeColor.red}, ${themeColor.green}, ${themeColor.blue}, ${custom_opacity})`;
+            }
+            
+            newStyle = newStyle + `background-color: ${background_color}; transition-delay: 0s; transition-duration: 0.250s;`;
             this._dash._background.set_style(newStyle);
         }
     }
@@ -301,7 +358,9 @@ var ThemeManager = class DashToDock_ThemeManager {
                     'custom-theme-shrink',
                     'custom-theme-running-dots',
                     'extend-height',
-                    'force-straight-corner'];
+                    'force-straight-corner',
+                    'border-radius',
+                    'floating-margin'];
 
         this._signalsHandler.add(...keys.map(key => [
             Docking.DockManager.settings,
@@ -352,7 +411,7 @@ var Transparency = class DashToDock_Transparency {
             this._base_actor_style = "";
         }
 
-        this._signalsHandler.addWithLabel('transparency', [
+        this._signalsHandler.addWithLabel(Labels.TRANSPARENCY, [
             global.window_group,
             'actor-added',
             this._onWindowActorAdded.bind(this)
@@ -396,7 +455,7 @@ var Transparency = class DashToDock_Transparency {
     disable() {
         // ensure I never double-register/inject
         // although it should never happen
-        this._signalsHandler.removeWithLabel('transparency');
+        this._signalsHandler.removeWithLabel(Labels.TRANSPARENCY);
 
         for (let key of this._trackedWindows.keys())
             this._trackedWindows.get(key).forEach(id => {
@@ -456,7 +515,8 @@ var Transparency = class DashToDock_Transparency {
         let windows = activeWorkspace.list_windows().filter(function(metaWindow) {
             return metaWindow.get_monitor() === dash._monitorIndex &&
                    metaWindow.showing_on_its_workspace() &&
-                   metaWindow.get_window_type() != Meta.WindowType.DESKTOP;
+                   metaWindow.get_window_type() !== Meta.WindowType.DESKTOP &&
+                   (!Meta.is_wayland_compositor() || !metaWindow.skip_taskbar);
         });
 
         /* Check if at least one window is near enough to the panel.

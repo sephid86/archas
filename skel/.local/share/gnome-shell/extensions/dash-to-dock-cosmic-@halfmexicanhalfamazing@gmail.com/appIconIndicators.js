@@ -25,7 +25,8 @@ const RunningIndicatorStyle = {
     SEGMENTED: 4,
     SOLID: 5,
     CILIORA: 6,
-    METRO: 7
+    METRO: 7,
+    BINARY: 8
 };
 
 const MAX_WINDOWS_CLASSES = 4;
@@ -88,6 +89,9 @@ var AppIconIndicator = class DashToDock_AppIconIndicator {
             case RunningIndicatorStyle.METRO:
                 runningIndicator = new RunningIndicatorMetro(source);
             break;
+            case RunningIndicatorStyle.BINARY:
+                runningIndicator = new RunningIndicatorBinary(source);
+                break;
 
             default:
                 runningIndicator = new RunningIndicatorBase(source);
@@ -184,6 +188,7 @@ var RunningIndicatorBase = class DashToDock_RunningIndicatorBase extends Indicat
     _restoreDefaultDot() {
         this._source._dot.opacity = 255;
     }
+    
 
     _enableBacklight() {
 
@@ -299,7 +304,8 @@ var RunningIndicatorDots = class DashToDock_RunningIndicatorDots extends Running
                    'custom-theme-customize-running-dots',
                    'unity-backlit-items',
                    'apply-glossy-effect',
-                   'running-indicator-dominant-color'];
+                   'running-indicator-dominant-color',
+                   'border-radius'];
 
         keys.forEach(function(key) {
             this._signalsHandler.add(
@@ -413,7 +419,7 @@ var RunningIndicatorDots = class DashToDock_RunningIndicatorDots extends Running
         Clutter.cairo_set_source_color(cr, this._borderColor);
 
         // draw for the bottom case:
-        cr.translate((this._width - (2*n)*this._radius - (n-1)*this._spacing)/2, this._height - this._padding);
+        cr.translate((this._width - (2*n)*this._radius - (n-1)*this._spacing)/2, this._height - this._padding - 2); ////////////////
         for (let i = 0; i < n; i++) {
             cr.newSubPath();
             cr.arc((2*i+1)*this._radius + i*this._spacing, -this._radius - this._borderWidth/2, this._radius, 0, 2*Math.PI);
@@ -631,6 +637,38 @@ var RunningIndicatorMetro = class DashToDock_RunningIndicatorMetro extends Runni
                 cr.rectangle(this._width - darkenedLength, 0, darkenedLength, size);
                 cr.fill();
             }
+        }
+    }
+}
+
+var RunningIndicatorBinary = class DashToDock_RunningIndicatorBinary extends RunningIndicatorDots {
+    _drawIndicator(cr) {
+        // Draw the required numbers of dots
+        let n = Math.min(15, this._source.windowsCount);
+
+        if (this._source.running) {
+            let size =  Math.max(this._width/11, this._borderWidth);
+            let padding = this._borderWidth;
+            let spacing = Math.ceil(this._width/18);
+            let yOffset = this._height - size + 5;
+            let binaryValue = String("0000" + (n >>> 0).toString(2)).slice(-4);
+
+            cr.setLineWidth(this._borderWidth);
+            Clutter.cairo_set_source_color(cr, this._borderColor);
+
+            cr.translate(Math.floor((this._width - 4*size - (4-1)*spacing)/2), yOffset);
+            for (let i = 0; i < binaryValue.length; i++) {
+                if (binaryValue[i] == "1") {
+                    cr.newSubPath();
+                    cr.arc((2*i+1)*this._radius + i*spacing, -this._radius - this._borderWidth/2, this._radius, 0, 2*Math.PI);
+                } else {
+                    cr.newSubPath();
+                    cr.rectangle(i*size + i*spacing, -this._radius - this._borderWidth/2 - size/5, size, size/3);
+                }
+            }
+            cr.strokePreserve();
+            Clutter.cairo_set_source_color(cr, this._bodyColor);
+            cr.fill();
         }
     }
 }
