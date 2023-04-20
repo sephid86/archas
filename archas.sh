@@ -103,10 +103,10 @@ sed -i 's/#\[multilib\]/\[multilib\]\nInclude = \/etc\/pacman.d\/mirrorlist/g' /
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 pacman -Syu
-pacman -Sy archlinux-keyring
+pacman -Sy --noconfirm archlinux-keyring
 
 #부팅관련 설치입니다. 네트워크 설치 설정도 포함합니다. vim 설치 포함.
-pacman -Sy vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
+pacman -Sy --noconfirm vim base-devel os-prober ntfs-3g efibootmgr networkmanager ${CPUVendorID}-ucode
 systemctl enable NetworkManager
 
 #root 용 vim 설정 해줍니다.
@@ -127,14 +127,14 @@ su - ${userid} -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/
 su - ${userid} -c "vim +PluginInstall +qall"
 
 #grub 설치 및 설정 - 멀티부팅을 자동으로 잡아줍니다.
-pacman -Sy grub
+pacman -Sy --noconfirm grub
 sed -i 's/GRUB_DISABLE_OS_PROBER="true"/GRUB_DISABLE_OS_PROBER="false"/g' /usr/bin/grub-mkconfig
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 #grub-mkconfig -o /boot/grub/grub.cfg
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
-#gnome 설치
-pacman -Sy wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome gedit smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol
+#--- gnome 설치
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko firefox
 
 systemctl enable gdm
 
@@ -149,20 +149,22 @@ su - ${userid} -c "git config --global core.editor vim"
 
 #pacman -Sy libreoffice-fresh-ko gimp
 
-pacman -R gnome-software
+pacman -R --noconfirm gnome-software
 
-#AMD ATI 드라이버 설치합니다.
+#AMD ATI 드라이버 설치합니다. ----- 아래 주석 내용 사용 금지. radeon vulkan 활성에 문제 있음.-----
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
-
 #pacman -Sy amdvlk vulkan-radeon lib32-vulkan-radeon lib32-vulkan-icd-loader
 #echo "options amdgpu si_support=1" >> /etc/modprobe.d/amdgpu.conf
 #echo "options amdgpu cik_support=1" >> /etc/modprobe.d/amdgpu.conf
 #echo "options radeon si_support=0" >> /etc/modprobe.d/radeon.conf
 #echo "options radeon cik_support=0" >> /etc/modprobe.d/radeon.conf
-
 #pacman -Sy vulkan-tools
+#----- 위 주석 내용 사용 금지. /etc/mkinitcpio.conf
+#----- 라데온의 경우 amdvlk 설치하면 vulkan 에서 에러남.
+#----- 라데온의 경우 /etc/mkinitcpio.conf 에서 MODULES=(amdgpu radeon) 해주고 라데온 드라이버만 설치해야됨.
+#----- 
 
-pacman -Sy mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
+pacman -Sy --noconfirm mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver gstreamer-vaapi
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
