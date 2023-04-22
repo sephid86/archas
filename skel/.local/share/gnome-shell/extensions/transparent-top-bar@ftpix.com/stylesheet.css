@@ -1121,14 +1121,14 @@
 }
 
 #panel.transparent-top-bar--transparent-100 {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   -panel-corner-border-width: 0px;
   -panel-corner-opacity: 1;
   transition-duration: 500ms;
 }
 
 #panel.transparent-top-bar--transparent-100 .panel-corner {
-  -panel-corner-background-color: rgb(0, 0, 0);
+  -panel-corner-background-color: black;
 }
 
 #panel.transparent-top-bar--transparent:overview .panel-corner {
