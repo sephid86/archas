@@ -5,7 +5,9 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-yay -S gnome-terminal-transparency
+sudo pacman -R --noconfirm gnome-terminal
+
+yay -S --noconfirm gnome-terminal-transparency
 
 echo -e "
 \033[01;32m 

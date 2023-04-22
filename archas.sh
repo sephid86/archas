@@ -134,7 +134,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
 #--- gnome 설치
-pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox gnome-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko geary
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly gst-plugins-va rhythmbox gnome-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko geary
 
 systemctl enable gdm
 
@@ -149,7 +149,7 @@ su - ${userid} -c "git config --global core.editor vim"
 
 #pacman -Sy libreoffice-fresh-ko gimp
 
-pacman -R --noconfirm gnome-software
+pacman -R --noconfirm gnome-software gnome-console
 
 #AMD ATI 드라이버 설치합니다. ----- 아래 주석 내용 사용 금지. radeon vulkan 활성에 문제 있음.-----
 #pacman -Syy xf86-video-ati xf86-video-amdgpu mesa vulkan-radeon lib32-vulkan-radeon mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver vulkan-icd-loader vulkan-tools
@@ -164,7 +164,7 @@ pacman -R --noconfirm gnome-software
 #----- 라데온의 경우 /etc/mkinitcpio.conf 에서 MODULES=(amdgpu radeon) 해주고 라데온 드라이버만 설치해야됨.
 #----- 
 
-pacman -Sy --noconfirm mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver gstreamer-vaapi
+pacman -Sy --noconfirm mesa-vdpau lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver libva-vdpau-driver libvdpau-va-gl gstreamer-vaapi
 
 #d2coding 폰트를 설치합니다.
 #git clone https://github.com/naver/d2codingfont.git
