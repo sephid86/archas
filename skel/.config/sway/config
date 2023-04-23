@@ -4,14 +4,11 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-#exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY GTK_IM_MODULE=ibus
-#exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY QT_IM_MODULE=ibus
-#exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XMODIFIERS=@im=ibus
-
 input * xkb_options korean:ralt_hangul,korean:rctrl_hanja
-exec ibus-daemon -drR
 
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec ibus-daemon -drR
 exec easyeffects --gapplication-service
 
 ### Variables
@@ -29,6 +26,7 @@ set $term gnome-terminal
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
+#set $menu fuzzel | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -223,6 +221,8 @@ bar {
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*
+#include ~/.config/sway/env
