@@ -1,0 +1,33 @@
+이 파일은 추후 sway 자동 설치를 스크립트 제작을 위해 필요한
+정보를 수집하기 위해 작성되었습니다.
+
+1.한글입력은 ibus 를 이용합니다.
+ibus ibus-hangul
+
+-한글입력에 필요한 sway config 설정입니다.
+input * xkb_options korean:ralt_hangul,korean:rctrl_hanja
+exec ibus-daemon -drR
+
+-/etc/environment 에 아래 내용 추가가 필요합니다.
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus
+
+2.화면공유에 필요한 sway config 설정입니다.
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+3.화면상 인증창을 띄우기 위해 필요한 설정입니다.
+polkit-gnome
+-sway config 설정입니다.
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+4.dmenu 는 bemenu 를 설치하면 됩니다.
+
+5.set $term 에서 터미널을 지정해 줘야 합니다.
+
+6.wofi 와 slurp 를 설치해두면 좋습니다.
+
+7.윈도우 타이틀바를 없에고 패딩을 주는 설정입니다.
+default_border pixel 1
+gaps inner 10
+
