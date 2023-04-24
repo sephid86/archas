@@ -35,3 +35,12 @@ gaps inner 10
 bindsym Print exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'ss%y-%m-%d-%H%M%S.png')
 bindsym Shift+Print exec grim $(xdg-user-dir PICTURES)/$(date +'ss%y-%m-%d-%H%M%S.png')
 
+
+
+-----
+로그인관리자 greetd
+런쳐 kickoff
+메뉴 wofi
+스크린샷 grim + slurp
+절전+잠금 swayidle swaylock
+

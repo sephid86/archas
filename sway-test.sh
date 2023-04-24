@@ -134,9 +134,9 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
 #--- gnome 설치
-pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-wlr smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-wlr smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-ugly rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko greetd
 
-#systemctl enable gdm
+systemctl enable greetd
 
 #사용자 계정 sudo 명령어 설정.
 #pacman -Sy sudo
