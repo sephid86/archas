@@ -62,7 +62,7 @@ arch-chroot /mnt<br>
 # cd archas<br>
 # ./archas.sh<br>
 <br>
---설치 완료 및 재부팅 후 추가로 아래 명령어 실행--
+--설치 완료 및 재부팅 후 추가로 아래 명령어 실행--<br>
 1. 우선 기존의 archas 폴더를 사용자계정으로 복사합니다.<br>
 $ cp -r /archas ~/<br>
 -yay 설치-<br>
