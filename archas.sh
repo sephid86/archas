@@ -134,7 +134,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
 #--- gnome 설치
-pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va rhythmbox gnome-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko geary
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire gnome gnome-shell-extensions gnome-tweaks ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-gnome smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko geary
 
 systemctl enable gdm
 
