@@ -5,10 +5,6 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-sudo pacman -R --noconfirm gnome-terminal
-
-yay -S --noconfirm gnome-terminal-transparency
-
 echo -e "
 \033[01;32m 
 -- yay 설치가 완료되었습니다. -- 
