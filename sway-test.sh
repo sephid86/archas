@@ -133,8 +133,14 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 #grub-mkconfig -o /boot/grub/grub.cfg
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
-#--- gnome 설치
-pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-wlr gtk3 gtk4 qt6-wayland smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko greetd grim slurp swaybg dmenu wofi xorg-xwayland thunar tumbler gvfs pantheon-polkit-agent
+#--- pipewire 설치
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire
+
+#--- sway 설치
+pacman -Sy --noconfirm sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji wayland wayland-protocols xdg-desktop-portal-wlr gtk3 gtk4 qt6-wayland ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va xfce4-terminal pavucontrol grim slurp swaybg dmenu wofi xorg-xwayland thunar tumbler gvfs pantheon-polkit-agent pango cairo gdk-pixbuf2 pcre2
+
+#--- 응용프로그램 설치
+pacman -Sy --noconfirm smplayer smplayer-skins smplayer-themes rhythmbox libreoffice-fresh-ko gimp firefox-i18n-ko 
 
 echo "GTK_IM_MODULE=ibus" >> /etc/environment
 echo "QT_IM_MODULE=ibus" >> /etc/environment
