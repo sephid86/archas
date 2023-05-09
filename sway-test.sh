@@ -134,7 +134,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 
 #--- gnome 설치
-pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-wlr qt6-wayland smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko greetd grim slurp swaybg dmenu wofi xorg-xwayland thunar tumbler gvfs pantheon-polkit-agent
+pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire sway ibus-hangul noto-fonts noto-fonts-cjk noto-fonts-emoji xdg-desktop-portal-wlr gtk3 gtk4 qt6-wayland smplayer smplayer-skins smplayer-themes ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va rhythmbox xfce4-terminal libreoffice-fresh-ko gimp pavucontrol firefox-i18n-ko greetd grim slurp swaybg dmenu wofi xorg-xwayland thunar tumbler gvfs pantheon-polkit-agent
 
 echo "GTK_IM_MODULE=ibus" >> /etc/environment
 echo "QT_IM_MODULE=ibus" >> /etc/environment
