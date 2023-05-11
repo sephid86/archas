@@ -1,0 +1,14 @@
+#!/bin/bash
+swaymsg "workspace 3"
+~/sway-toolwait -n -- xfce4-terminal -x htop
+swaymsg splitv
+~/sway-toolwait -n xfce4-terminal
+~/sway-toolwait -n xfce4-terminal
+~/sway-toolwait -n firefox
+swaymsg move right
+swaymsg focus left
+swaymsg focus up
+swaymsg focus up
+swaymsg resize set height 64px
+swaymsg focus down
+swaymsg "workspace 1"
