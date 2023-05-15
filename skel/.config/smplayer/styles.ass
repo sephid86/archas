@@ -4,4 +4,4 @@ Collisions: Normal
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, BackColour, OutlineColour, Bold, Italic, Alignment, BorderStyle, Outline, Shadow, MarginL, MarginR, MarginV
-Style: Default,Monospace,24,&H00ffffff,&H00000000,&H00000000,0,0,2,1,0.4,1.2,20,20,34
+Style: Default,D2Coding,24,&H00ffffff,&H00000000,&H00000000,0,0,2,1,0.5,0.5,20,20,90
