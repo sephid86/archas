@@ -1,4 +1,4 @@
-local filepath = mp.command_native({"expand-path", "~~/volume"})
+local filepath = mp.command_native({"expand-path", "~/.mpv_volume"})
 
 local loadfile = io.open(filepath, "r")
 
