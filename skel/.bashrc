@@ -1,6 +1,8 @@
 #
 # ~/.bashrc
 #
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+export EDITOR='vim'
 #-----arch-powrline---($ sudo pacman -S powerline --needed)
 #powerline-daemon -q
 #POWERLINE_BASH_CONTINUATION=1
@@ -31,3 +33,5 @@ alias bakall='bakweb; bakdb'
 #alias tmux1='tmux new -d;tmux splitp -h;tmux splitp -v;tmux selectp -t 0;tmux attach'
 
 #alias vit='tmux new -d;tmux send-keys "vi" C-m;tmux splitp -v;tmux resizep -D 20;tmux splitp -h;tmux selectp -t 0;tmux attach'
+
+alias r='. ranger'
