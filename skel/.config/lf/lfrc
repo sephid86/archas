@@ -1,6 +1,9 @@
 set drawbox true
 set icons true
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
 set preview true
+set ignorecase true
 
 # interpreter for shell commands
 set shell sh
