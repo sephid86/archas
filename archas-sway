@@ -137,7 +137,7 @@ LC_ALL=C grub-mkconfig -o /boot/grub/grub.cfg
 pacman -Sy --noconfirm wireplumber pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse pipewire-v4l2 pipewire-x11-bell lib32-pipewire lib32-pipewire-jack lib32-pipewire-v4l2 gst-plugin-pipewire
 
 #--- sway 설치
-pacman -Sy --noconfirm sway noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome otf-font-awesome wayland wayland-protocols xdg-desktop-portal-wlr xdg-user-dirs-gtk gtk3 gtk4 qt6-wayland qt6-svg mbedtls ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va kitty pavucontrol grim slurp swaybg swayidle swaylock waybar dmenu wofi xorg-xwayland thunar tumbler gvfs polkit-gnome gnome-keyring pango cairo gdk-pixbuf2 pcre2 swayidle swaylock python-i3ipc file-roller ristretto
+pacman -Sy --noconfirm sway noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome otf-font-awesome wayland wayland-protocols xdg-desktop-portal-wlr xdg-user-dirs-gtk gtk3 gtk4 qt6-wayland qt6-svg mbedtls ffmpegthumbnailer gst-libav gst-plugins-good gst-plugin-va kitty pavucontrol grim slurp swaybg swayidle swaylock waybar dmenu wofi xorg-xwayland thunar tumbler gvfs polkit-gnome gnome-keyring pango cairo gdk-pixbuf2 pcre2 swayidle swaylock python-i3ipc file-roller ristretto python-pillow
 
 #--- 응용프로그램 설치
 pacman -Sy --noconfirm mpv cmus ranger rhythmbox libreoffice-fresh-ko gimp firefox-i18n-ko 
