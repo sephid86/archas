@@ -87,6 +87,5 @@ engine:
     preedit_johab: Needed
     addons:
       all:
-      - ComposeChoseongSsang
       dubeolsik:
       - TreatJongseongAsChoseong
