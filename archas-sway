@@ -142,9 +142,6 @@ pacman -Sy --noconfirm sway noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-
 #--- 응용프로그램 설치
 pacman -Sy --noconfirm mpv mpd mpc ncmpcpp ranger libreoffice-fresh-ko gimp firefox-i18n-ko ristretto mousepad
 
-echo "GTK_IM_MODULE=kime" >> /etc/environment
-echo "QT_IM_MODULE=kime" >> /etc/environment
-echo "XMODIFIERS=@im=kime" >> /etc/environment
 echo "MOZ_ENABLE_WAYLAND=1" >> /etc/environment
 
 #systemctl enable greetd
