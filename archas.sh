@@ -69,6 +69,9 @@ cp DIR_COLORS /etc
 cp bash.bashrc /etc
 cp .bashrc ~/
 
+#sway 로그인 세션설정파일
+cp sway.desktop /usr/share/wayland-sessions/sway.desktop
+
 #기본 설정파일을 복사합니다.
 cp -rf skel /etc
 

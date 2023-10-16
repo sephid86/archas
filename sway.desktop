@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sway
+Comment=An i3-compatible Wayland compositor
+Exec=env GTK_IM_MODULE=kime QT_IM_MODULE=kime XMODIFIERS=@im=kime XDG_CURRENT_DESKTOP=sway sway
+Type=Application

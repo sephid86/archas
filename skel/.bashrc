@@ -4,15 +4,7 @@
 export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 export EDITOR='vim'
 
-if [ $SWAYSOCK ]; then
-  if [[ $XDG_SESSION_DESKTOP == "sway" ]] || [ -z $XDG_SESSION_DESKTOP ]; then
-    export XDG_SESSION_DESKTOP=sway
-    export XDG_CURRENT_DESKTOP=sway
-    export GTK_IM_MODULE=kime
-    export QT_IM_MODULE=kime
-    export XMODIFIERS=@im=kime
-  fi
-fi
+alias sway='env XDG_CURRENT_DESKTOP=sway GTK_IM_MODULE=kime QT_IM_MODULE=kime XMODIFIERS=@im=kime sway'
 
 #-----arch-powrline---($ sudo pacman -S powerline --needed)
 #powerline-daemon -q
