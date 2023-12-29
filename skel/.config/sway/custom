@@ -9,8 +9,9 @@ gaps inner 8
 #set $dp1 DVI-I-1
 #set $dp2 HDMI-A-1
 
+#기본 디스플레이의 position 은 반드시 0,0 이어야 합니다.
 #output $dp1 {
-#  position 1920,0
+#  position 0,0
 #}
 
 #output $dp2 {
