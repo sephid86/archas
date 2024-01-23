@@ -7,6 +7,7 @@ gaps inner 8
 
 #- 디스플레이 설정
 #set $dp1 DVI-I-1
+#set $dp1 DP-1
 #set $dp2 HDMI-A-1
 
 #기본 디스플레이의 position 은 반드시 0,0 이어야 합니다.
@@ -27,6 +28,7 @@ gaps inner 8
 
 #- 외부디스플레이 토글키
 bindsym $mod+Ctrl+grave output $dp2 toggle
+
 ##--- 윈도우 테두리 컬러 설정.
 set $focus_border_color "#ffffff"
 set $focus_bg_color "#555555"
@@ -135,7 +137,10 @@ for_window [title="Mozilla Firefox"] floating disable
 for_window [class="firefox" instance="Navigator"] floating disable
 
 #- 영상재생중 절전모드 또는 스크린세이버 중지.
+for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [class="firefox"] inhibit_idle fullscreen
+for_window [app_id="google-chrome"] inhibit_idle fullscreen
+for_window [class="Google-chrome"] inhibit_idle fullscreen
 #for_window [app_id="mpv"] inhibit_idle visible
 
 ##--- 기타 메모
