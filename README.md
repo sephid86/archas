@@ -3,7 +3,7 @@
 --
 <br>
 <b>풀잎 리눅스 배포판이 개발됨에 따라 archas 의 업데이트를 중단합니다.<b><br>
-https://www.clien.net/service/board/cm_linux/18561540<br><br><br>
+https://github.com/sephid86/fulleaf<br><br><br>
 <br>
 --
 -저 편하려고 만들었는데 다른 초보분들께도 도움이 되길 바라는 마음에 올립니다.-<br>
