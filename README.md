@@ -1,6 +1,7 @@
 # archas ( ARCH linux Auto Setup )
 아치리눅스 자동 설치 스크립트<br>
 ---------------------------------------------------------
+<br>
 <b>풀잎 리눅스 배포판이 개발됨에 따라 archas 의 업데이트를 중단합니다.<b><br>
 https://www.clien.net/service/board/cm_linux/18561540<br><br><br>
 <br>
